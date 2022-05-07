@@ -57,7 +57,10 @@ df = pd.read_csv('All_Data.csv')
 sns.barplot(x=df['sentiment'].value_counts().index.values, y=df['sentiment'].value_counts())
 plt.ylabel('Count')
 plt.show()
+```
+![image](https://user-images.githubusercontent.com/13395314/167274363-44f6c764-de5d-4920-9a4c-83c9e1f72386.png)
 
+```python
 tokenizer=Tokenizer()
 tokenizer.fit_on_texts(df['URL_HTML_unemoji_reduce_corr'])
 word_freq=pd.DataFrame(tokenizer.word_counts.items(),columns=['word','count']).sort_values(by='count',ascending=False)
@@ -68,7 +71,7 @@ plt.figure(figsize=(15,10))
 plt.axis('off')
 plt.imshow(wc)
 ```
-<matplotlib.image.AxesImage at 0x2a21ebee610>
+![image](https://user-images.githubusercontent.com/13395314/167274408-7d079d98-0fa4-40ab-adb0-752e8001aacf.png)
 
 # Methods
 ### Emoji
@@ -153,8 +156,9 @@ def Remove_Url_UserName(text):
     return text
 ```
 ## Remove (Names,StopWords,punct,Custom stop word)
+### Custom stop word
 refer to "https://nlp.stanford.edu/IR-book/html/htmledition/dropping-common-terms-stop-words-1.html "
-img95.png
+![image](https://user-images.githubusercontent.com/13395314/167274427-85fa7c01-a01f-424e-b6db-6defd264c8f5.png)
 ```python
 custom_stop_word_list=['a','an','are','as','at','by','for','from','if','her','i','me', 'he','him','she', 'himself','they',
                        'you','yours', 'yourselves','themselves','their', 'hereupon','wherein', 'upon',
@@ -238,12 +242,8 @@ data = mpd.read_csv(r"Suicide_Detection.csv" ,header=0, encoding='latin-1' ,
 data = data[["sentiment" , "content"]]
 data.head()
 ```
-sentiment	content
-0	suicide	Ex Wife Threatening SuicideRecently I left my wife for good because she has cheated on me twice and lied to me so much that I have decided to refuse to go back to her. As of a few days ago, she began threatening suicide. I have tirelessly spent these paat few days talking her out of it and she keeps hesitating because she wants to believe I'll come back. I know a lot of people will threaten this in order to get their way, but what happens if she really does? What do I do and how am I supposed to handle her death on my hands? I still love my wife but I cannot deal with getting cheated on again and constantly feeling insecure. I'm worried today may be the day she does it and I hope so much it doesn't happen.
-1	non-suicide	Am I weird I don't get affected by compliments if it's coming from someone I know irl but I feel really good when internet strangers do it
-2	non-suicide	Finally 2020 is almost over... So I can never hear "2020 has been a bad year" ever again. I swear to fucking God it's so annoying
-3	suicide	i need helpjust help me im crying so hard
-4	suicide	Iâ€™m so lostHello, my name is Adam (16) and Iâ€™ve been struggling for years and Iâ€™m afraid. Through these past years thoughts of suicide, fear, anxiety Iâ€™m so close to my limit . Iâ€™ve been quiet for so long and Iâ€™m too scared to come out to my family about these feelings. About 3 years ago losing my aunt triggered it all. Everyday feeling hopeless , lost, guilty, and remorseful over her and all the things Iâ€™ve done in my life,but thoughts like these with the little Iâ€™ve experienced in life? Only time Iâ€™ve revealed these feelings to my family is when I broke down where they saw my cuts. Watching them get so worried over something I portrayed as an average day made me feel absolutely dreadful. They later found out I was an attempt survivor from attempt OD(overdose from pills) and attempt hanging. All that happened was a blackout from the pills and I never went through with the noose because Iâ€™m still so afraid. During my first therapy I was diagnosed with severe depression, social anxiety, and a eating disorder.\nI was later transferred to a fucken group therapy for some reason which made me feel more anxious. Eventually before my last session with a 1 on 1 therapy she showed me my results from a daily check up on my feelings(which was a 2 - step survey for me and my mom/dad )\nCome to find out as Iâ€™ve been putting feeling horrible and afraid/anxious everyday , my mom has been doing Iâ€™ve been doing absolutely amazing with me described as â€œhappiest sheâ€™s ever seen me, therapy has helped himâ€ \nI eventually was put on Sertaline (anti anxiety or anti depression Iâ€™m sorry I forgot) but I never finished my first prescription nor ever found the right type of anti depressant because my mom thought I only wanted the drugs so she took me off my recommended pill schedule after ~3 week and stopped me from taking them. All this time Iâ€™ve been feeling worse afraid of the damage/ worry Iâ€™ve caused them even more. \nNow here with everything going on, Iâ€™m as afraid as Iâ€™ve ever been . Iâ€™ve relapsed on cutting and have developed severe insomnia . Day after day feeling more hopeless, worthless questioning why am I still here? Whatâ€™s my motivation to move out of bed and keep going? I ask these to myself nearly every night almost having a break down everytime. \nPlease Please Please someone.. anyone help me.\nIâ€™m so scared I might do something drastic, Iâ€™ve been shaped by fear and anxiety. Idk what to do anymore
+![image](https://user-images.githubusercontent.com/13395314/167274481-e5dcadca-38ef-4a69-aa7e-657441edadf1.png)
+
 ```python
 data.info()
 ```
