@@ -3,8 +3,6 @@ Applying Sentiment analysis on social media data to early detect depression usin
     depression detection.ipynb
 
 ```python
-
-
 Importing libraries
 import pandas as pd
 import numpy as np 
@@ -25,19 +23,25 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer 
 from nltk.corpus import stopwords
+```
+
 ## Model
 # Loading some sklearn packaces for modelling.
+```python
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 from sklearn.model_selection import train_test_split
+```
+
 
 # for build our model
+```python
 import tensorflow as tf
 import tensorflow_hub as hub
 import tokenization
 module_url = 'https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/2'
 bert_layer = hub.KerasLayer(module_url, trainable=False)
-
+```
 # Setting some options for general use.
 import os
 import warnings
