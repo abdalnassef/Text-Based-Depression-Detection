@@ -25,8 +25,8 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 ```
 
-## Model
-# Loading some sklearn packaces for modelling.
+# Model
+### Loading some sklearn packaces for modelling.
 ```python
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
@@ -34,7 +34,7 @@ from sklearn.model_selection import train_test_split
 ```
 
 
-# for build our model
+### for build our model
 ```python
 import tensorflow as tf
 import tensorflow_hub as hub
@@ -42,9 +42,8 @@ import tokenization
 module_url = 'https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/2'
 bert_layer = hub.KerasLayer(module_url, trainable=False)
 ```
-# Setting some options for general use.
+### Setting some options for general use.
 ```python
-import os
 import warnings
 plt.style.use('fivethirtyeight')
 pd.options.display.max_columns = 250
@@ -77,14 +76,14 @@ plt.imshow(wc)
 <matplotlib.image.AxesImage at 0x2a21ebee610>
 
 # Methods
-Emoji
+### Emoji
 
 ```python
 EMOTICONS = {
     u":‑\)":"Happy face",u":\)":"Happy face",    u":-\]":"Happy face",u":\]":"Happy face",    u":-3":"Happy face",    u":3":"Happy face",    u":->":"Happy face",u":>":"Happy face",    u"8-\)":"Happy face",    u":o\)":"Happy face",    u":-\}":"Happy face",u":\}":"Happy face",    u":-\)":"Happy face",    u":c\)":"Happy face",    u":\^\)":"Happy face",u"=\]":"Happy face",    u"=\)":"Happy face",    u":‑D":"Laughing",u":D":"Laughing",    u"8‑D":"Laughing",u"8D":"Laughing",    u"X‑D":"Laughing",u"XD":"Laughing",    u"=D":"Laughing",u"=3":"Laughing",    u"B\^D":"Laughing",u":-\)\)":"Very happy",    u":‑\(":"sad",u":-\(":"sad",    u":\(":"sad",u":‑c":"sad",    u":c":"sad",u":‑<":"sad",    u":<":"sad",u":‑\[":"sad",    u":\[":"sad",u":-\|\|":"sad",    u">:\[":"sad",u":\{":"sad",    u":@":"sad",u">:\(":"sad",    u":'‑\(":"Crying",u":'\(":"Crying",    u":'‑\)":"Tears of happiness",u":'\)":"Tears of happiness",    u"D‑':":"Horror",u"D:<":"Disgust",    u"D:":"Sadness",u"D8":"Great dismay",    u"D;":"Great dismay",    u"D=":"Great dismay",    u"DX":"Great dismay",u":‑O":"Surprise",    u":O":"Surprise",    u":‑o":"Surprise",    u":o":"Surprise",u":-0":"Shock",    u"8‑0":"Yawn",    u">:O":"Yawn",    u":-\*":"Kiss",u":\*":"Kiss",    u":X":"Kiss",    u";‑\)":"Wink",u";\)":"Wink",    u"\*-\)":"Wink",u"\*\)":"Wink",    u";‑\]":"Wink",u";\]":"Wink",    u";\^\)":"Wink",u":‑,":"Wink",    u";D":"Wink",u":‑P":"Tongue sticking out",u":P":"Tongue sticking out",u"X‑P":"Tongue sticking out",u"XP":"Tongue sticking out",u":‑Þ":"Tongue sticking out",u":Þ":"Tongue sticking out",u":b":"Tongue sticking out",u"d:":"Tongue sticking out",u"=p":"Tongue sticking out",u">:P":"Tongue sticking out",u":‑/":"annoyed",u":/":"annoyed",u":-[.]":"annoyed",u">:[(\\\)]":"annoyed",u">:/":"annoyed",u":[(\\\)]":"annoyed",u"=/":"annoyed",u"=[(\\\)]":"annoyed",u":L":"annoyed",u"=L":"annoyed",u":S":"annoyed",u":‑\|":"Straight face",u":\|":"Straight face",u":$":"Embarrassed",u":‑x":"tongue-tied",u":x":"tongue-tied",u":‑#":"tongue-tied",u":#":"tongue-tied",u":‑&":"tongue-tied",u":&":"tongue-tied",u"O:‑\)":"innocent",u"O:\)":"innocent",u"0:‑3":"innocent",u"0:3":"innocent",u"0:‑\)":"innocent",u"0:\)":"innocent",u":‑b":"Tongue sticking out",u"0;\^\)":"innocent",u">:‑\)":"Evil",u">:\)":"Evil",u"\}:‑\)":"Evil",u"\}:\)":"Evil",u"3:‑\)":"Evil",u"3:\)":"Evil",u">;\)":"Evil",u"\|;‑\)":"Cool",u"\|‑O":"Bored",u":‑J":"Tongue-in-cheek",u"#‑\)":"Party all night",u"%‑\)":"confused",u"%\)":"confused",u":-###..":"Being sick",u":###..":"Being sick",u"<:‑\|":"Dump",u"\(>_<\)":"Troubled",u"\(>_<\)>":"Troubled",u"\(';'\)":"Baby",u"\(\^\^>``":"Nervous",u"\(\^_\^;\)":"Nervous",u"\(-_-;\)":"Nervous",u"\(~_~;\) \(・\.・;\)":"Nervous",u"\(-_-\)zzz":"Sleeping",u"\(\^_-\)":"Wink",u"\(\(\+_\+\)\)":"Confused",u"\(\+o\+\)":"Confused",u"\(o\|o\)":"Ultraman",u"\^_\^":"Joyful",u"\(\^_\^\)/":"Joyful",u"\(\^O\^\)／":"Joyful",u"\(\^o\^\)／":"Joyful",u"\(__\)":"respect",u"_\(\._\.\)_":"respect",u"<\(_ _\)>":"respect",u"<m\(__\)m>":"respect",u"m\(__\)m":"respect",u"m\(_ _\)m":"respect",u"\('_'\)":"Sad",u"\(/_;\)":"Sad",u"\(T_T\) \(;_;\)":"Sad",u"\(;_;":"Sad of Crying",u"\(;_:\)":"Sad",u"\(;O;\)":"Sad",u"\(:_;\)":"Sad",u"\(ToT\)":"Sad",u";_;":"Sad",u";-;":"Sad",u";n;":"Sad",u";;":"Sad",u"Q\.Q":"Sad",u"T\.T":"Sad",u"QQ":"Sad",u"Q_Q":"Sad",u"\(-\.-\)":"Shame",u"\(-_-\)":"Shame",u"\(一一\)":"Shame",u"\(；一_一\)":"Shame",u"\(=_=\)":"Tired",u"\(=\^\·\^=\)":"cat",u"\(=\^\·\·\^=\)":"cat",u"=_\^=":"cat",u"\(\.\.\)":"Looking down",u"\(\._\.\)":"Looking down",u"\^m\^":"Giggling with hand covering mouth",u"\(\・\・?":"Confusion",u">\^_\^<":"Normal Laugh",u"<\^!\^>":"Normal Laugh",u"\^/\^":"Normal Laugh",u"\（\*\^_\^\*）" :"Normal Laugh",u"\(\^<\^\) \(\^\.\^\)":"Normal Laugh",u"\(^\^\)":"Normal Laugh",u"\(\^\.\^\)":"Normal Laugh",u"\(\^_\^\.\)":"Normal Laugh",u"\(\^_\^\)":"Normal Laugh",u"\(\^\^\)":"Normal Laugh",u"\(\^J\^\)":"Normal Laugh",u"\(\*\^\.\^\*\)":"Normal Laugh",u"\(\^—\^\）":"Normal Laugh",u"\(#\^\.\^#\)":"Normal Laugh",u"\（\^—\^\）":"Waving",u"\(;_;\)/~~~":"Waving",u"\(\^\.\^\)/~~~":"Waving",u"\(-_-\)/~~~ \($\·\·\)/~~~":"Waving",u"\(T_T\)/~~~":"Waving",u"\(ToT\)/~~~":"Waving",u"\(\*\^0\^\*\)":"Excited",u"\(\*_\*\)":"Amazed",u"\(\*_\*;":"Amazed",u"\(\+_\+\) \(@_@\)":"Amazed",u"\(\*\^\^\)v":"Laughing",u"\(\^_\^\)v":"Laughing",u"\(\(d[-_-]b\)\)":"Listening to music",u'\(-"-\)':"Worried",u"\(ーー;\)":"Worried",u"\(\^0_0\^\)":"Eyeglasses",u"\(\＾ｖ\＾\)":"Happy",u"\(\＾ｕ\＾\)":"Happy",u"\(\^\)o\(\^\)":"Happy",u"\(\^O\^\)":"Happy",u"\(\^o\^\)":"Happy",u"\)\^o\^\(":"Happy",u":O o_O":"Surprised",u"o_0":"Surprised",u"o\.O":"Surpised",u"\(o\.o\)":"Surprised",u"oO":"Surprised",u"\(\*￣m￣\)":"Dissatisfied",u"\(‘A`\)":"Snubbed"
 }
 ```
-#Emoji patterns
+## Emoji patterns
 ```python
 emoji_pattern = re.compile("["
          u"\U0001F600-\U0001F64F"  # emoticons
@@ -96,7 +95,7 @@ emoji_pattern = re.compile("["
          "]+", flags=re.UNICODE)
          
 ```
-Remove Emoji
+## Remove Emoji
 ```python
 def remove_emoji(tweet):
     emoji = demoji.findall(tweet)
@@ -115,7 +114,7 @@ def remove_emoji(tweet):
     return result
  ```
     
-Transfer HTML code (<) to < , & to & and .......
+## Transfer HTML code (<) to < , & to & and .......
 
 ```python
 def Replace_HTML_codes(text):
@@ -123,13 +122,13 @@ def Replace_HTML_codes(text):
     result = su.unescape(text)
     return result
 ```
-Remove numbers
+## Remove numbers
 ```python
 def remove_num(text):
     text = re.sub(" \d+", " ", text)
     return text
  ```
-Spell Checker
+## Spell Checker
 ```python
 from spellchecker import SpellChecker
 spell = SpellChecker()
@@ -145,7 +144,7 @@ def correct_spellings(text):
             corrected_text.append(word)
     return " ".join(corrected_text)
 ```
-Remove URL (http://ssdfsd ) and @username and change & to and
+## Remove URL (http://ssdfsd ) and @username and change & to and
 ```python
 def Remove_Url_UserName(text): 
     text = re.sub(r"http\S+", "", text , re.IGNORECASE)         #remove url links
@@ -158,11 +157,7 @@ def Remove_Url_UserName(text):
     text = re.sub(' +', ' ', text)          #convert two or more spaces into one space
     return text
 ```
-Remove
-Names
-StopWords
-punct
-Custom stop word
+## Remove (Names,StopWords,punct,Custom stop word)
 refer to "https://nlp.stanford.edu/IR-book/html/htmledition/dropping-common-terms-stop-words-1.html "
 img95.png
 ```python
@@ -204,9 +199,8 @@ def StopWords_punct(text):
      
     return my_doc_cleaned
 ```
-Merge Functions
-Steps
-Steps without EMOJI
+## Merge Functions
+## Steps without EMOJI
 ```python
 def preprocess_text_removeEmoji(text):
     text = Remove_Url_UserName(text)
@@ -218,8 +212,8 @@ def preprocess_text_removeEmoji(text):
     text = ' '.join(str(v) for v in t5)
     return text
   ```
-Testing Functions
-applying preprocessing :-
+## Testing Functions
+#### applying preprocessing :-
 @neonwonderland somebodye on yt youtube made an mp3 version of each song from the coachella set!!! ;D :) using my cmputr http://www.megaupload.com/?d=EBUP6VVO$#@see go
 
 ```python
@@ -230,7 +224,7 @@ print(Text2)
 somebody youtube made version each song coachella set using computer go
 
 
-Reading Data
+## Reading Data
 ===============================================
 ```python
 os.environ["MODIN_ENGINE"] = "ray"  # Modin will use Ray
