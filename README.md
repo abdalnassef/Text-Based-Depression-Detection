@@ -50,12 +50,7 @@ pd.options.display.max_columns = 250
 pd.options.display.max_rows = 250
 warnings.filterwarnings('ignore')
 ```
-2022-01-21 23:05:35.247502: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-21 23:05:35.247535: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
-2022-01-21 23:05:37.073873: E tensorflow/stream_executor/cuda/cuda_driver.cc:271] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
-2022-01-21 23:05:37.073933: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (hazem): /proc/driver/nvidia/version does not exist
-2022-01-21 23:05:37.074541: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+![image](https://user-images.githubusercontent.com/13395314/167274337-b37cfdce-f9b8-4fee-aa46-d70ceffc9fd1.png)
 
 ```python
 df = pd.read_csv('All_Data.csv')
