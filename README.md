@@ -247,19 +247,11 @@ data.head()
 ```python
 data.info()
 ```
-<class 'modin.pandas.dataframe.DataFrame'>
-RangeIndex: 232074 entries, 0 to 232073
-Data columns (total 2 columns):
- #   Column     Non-Null Count   Dtype 
----  ---------  ---------------  ----- 
- 0   sentiment  232074 non-null  object
- 1   content    232074 non-null  object
-dtypes: object(2)
-memory usage: 3.5 MB
+![image](https://user-images.githubusercontent.com/13395314/167274529-fa935106-d2f6-44da-9234-b0b3f68c1482.png)
+```python
 data['sentiment'].value_counts()
-non-suicide    116037
-suicide        116037
-Name: sentiment, dtype: int64
+```
+![image](https://user-images.githubusercontent.com/13395314/167274538-b74af9a1-d80d-4578-9fda-e6a044826f66.png)
 
 ```python
 data['length']=data['content'].str.len()
@@ -267,23 +259,14 @@ data=data[data['length']<2000]
 data = data[["sentiment" , "content"]]
 data.info()
 ```
-<class 'modin.pandas.dataframe.DataFrame'>
-Int64Index: 214799 entries, 0 to 232073
-Data columns (total 2 columns):
- #   Column     Non-Null Count   Dtype 
----  ---------  ---------------  ----- 
- 0   sentiment  214799 non-null  object
- 1   content    214799 non-null  object
-dtypes: object(2)
-memory usage: 4.9 MB
+![image](https://user-images.githubusercontent.com/13395314/167274545-f35efb63-093c-435c-9919-14943ebf38c9.png)
 
 ```python
 data['sentiment'].value_counts()
 ```
-non-suicide    114085
-suicide        100714
-Name: sentiment, dtype: int64
-Apply Preprocessing
+![image](https://user-images.githubusercontent.com/13395314/167274556-9f036353-4663-4280-8e3c-2cadf2e6238b.png)
+
+## Apply Preprocessing
 ```python
 def forAll(df_data):
 
@@ -297,13 +280,13 @@ def forAll(df_data):
 PreProcess_data = forAll(data)  
 PreProcess_data.head()
 ```
-sentiment	content	URL_HTML_unemoji	URL_HTML_unemoji_corr	URL_HTML_unemoji_corr_Num	URL_HTML_unemoji_reduce_corr
-21	non-suicide	Me: I know I have a really toxic house and I do my best to cope with with it by going to school, etc Rona: hahahaha, stay at home forcefully go brrrrrrrrr	Me: I know I have a really toxic house and I do my best to cope with with it by going to school, etc Rona: hahahaha, stay at home forcefully go brrrrrrrrr	Me: I know I have a really toxic house and I do my best to cope with with it by going to school etc Rona: hahahaha stay at home forcefully go brrrrrrrrr	Me: I know I have a really toxic house and I do my best to cope with with it by going to school, etc Rona: hahahaha, stay at home forcefully go brrrrrrrrr	[Me, I, know, I, have, really, toxic, house, I, best, cope, going, school, etc, Rona, hahahaha, stay, home, forcefully, go, brrrrrrrrr]
-24	non-suicide	Do you sleep with Socks On,and how do you feel about sleeping with socks on? (I tried it for the first time with heavy long socks and it felt really nice when I woke up) Here are some benefits according to Healthline \n \n\n* **Prevent hot flashes:** Some women find wearing socks helpful for cooling their core body temperature.\n* **Improve cracked heels:** Wearing cotton socks after you moisturize can help keep your heels from drying out.\n* **Increase potential orgasms: According to the** [**BBC**](https://news.bbc.co.uk/2/hi/health/4111360.stm)**, researchers accidentally discovered that wearing socks increased participantsâ€™ ability to achieve an orgasm by 30 percent.**\n* **Decrease chance of Raynaudâ€™s attack:** Raynaudâ€™s disease is when affected areas of the skin, usually the toes and fingers, lose circulation and start to throb or swell. Wearing socks at night can help prevent an attack by keeping your feet warm and blood circulating.	Do you sleep with Socks On,and how do you feel about sleeping with socks on? (I tried it for the first time with heavy long socks and it felt really nice when I woke up) Here are some benefits according to Healthline * **Prevent hot flashes * Some women find wearing socks helpful for cooling their core body temperature. * **Improve cracked heels * Wearing cotton socks after you moisturize can help keep your heels from drying out. * **Increase potential orgasms: According to the** [**BBC**]( researchers accidentally discovered that wearing socks increased participantsâ€™ ability to achieve an orgasm by 30 percent.** * **Decrease chance of Raynaudâ€™s attack * Raynaudâ€™s disease is when affected areas of the skin, usually the toes and fingers, lose circulation and start to throb or swell. Wearing socks at night can help prevent an attack by keeping your feet warm and blood circulating.	Do you sleep with Socks On,and how do you feel about sleeping with socks on (I tried it for the first time with heavy long socks and it felt really nice when I woke up Here are some benefits according to Healthline * **Prevent hot flashes * Some women find wearing socks helpful for cooling their core body temperature * **Improve cracked heels * Wearing cotton socks after you moisturize can help keep your heels from drying out * **Increase potential orgasms According to the [**BBC**]( researchers accidentally discovered that wearing socks increased participants ability to achieve an orgasm by 30 percent i * **Decrease chance of Raynaudas attack * Raynaudas disease is when affected areas of the skin usually the toes and fingers lose circulation and start to throb or swell Wearing socks at night can help prevent an attack by keeping your feet warm and blood circulating	Do you sleep with Socks On,and how do you feel about sleeping with socks on? (I tried it for the first time with heavy long socks and it felt really nice when I woke up) Here are some benefits according to Healthline * **Prevent hot flashes * Some women find wearing socks helpful for cooling their core body temperature. * **Improve cracked heels * Wearing cotton socks after you moisturize can help keep your heels from drying out. * **Increase potential orgasms: According to the** [**BBC**]( researchers accidentally discovered that wearing socks increased participantsâ€™ ability to achieve an orgasm by percent.** * **Decrease chance of Raynaudâ€™s attack * Raynaudâ€™s disease is when affected areas of the skin, usually the toes and fingers, lose circulation and start to throb or swell. Wearing socks at night can help prevent an attack by keeping your feet warm and blood circulating.	[Do, sleep, Socks, On, feel, sleeping, socks, I, tried, first, time, heavy, long, socks, felt, really, nice, I, woke, up, Here, some, benefits, according, Healthline, Prevent, hot, flashes, Some, women, find, wearing, socks, helpful, cooling, core, body, temperature, Improve, cracked, heels, Wearing, cotton, socks, moisturize, can, help, keep, your, heels, drying, out, Increase, potential, orgasms, According, BBC, researchers, accidentally, discovered, wearing, socks, increased, participantsa, ability, achieve, orgasm, percent, Decrease, chance, Raynaudas, attack, Raynaudas, disease, affected, areas, skin, usually, toes, fingers, lose, circulation, start, throb, or, swell, Wearing, socks, night, can, help, prevent, attack, keeping, your, feet, warm, blood, circulating]
-25	suicide	The graveyard of redditAnyone find it eery to think how many dead users this subreddit has?\n\nToo often ill see a "I'm killing myself tonight" post from a active redditor only for them to never post again.	The graveyard of redditAnyone find it eery to think how many dead users this subreddit has? Too often ill see a "I'm killing myself tonight" post from a active redditor only for them to never post again.	The graveyard of redditAnyone find it eery to think how many dead users this subreddit has Too often ill see a "I'm killing myself tonight post from a active editor only for them to never post again	The graveyard of redditAnyone find it eery to think how many dead users this subreddit has? Too often ill see a "I'm killing myself tonight" post from a active redditor only for them to never post again.	[The, graveyard, redditAnyone, find, eery, think, many, dead, users, subreddit, Too, often, ill, see, I, killing, myself, tonight, post, active, redditor, only, them, never, post, again]
-26	non-suicide	Guys I want friends Thatâ€™s it , Iâ€™m alone and donâ€™t talk to anyone dm me or anything, Iâ€™m just tired of only talking to my dad and sister, literally only my dad and sister , I like animated series but Iâ€™m flexible to anything the last series I watch was Santa Claritaâ€™s diet and the last animated series I watch was the hollow and shera ( I was watching them at the same time ), and I have a very extended music repertoire I can draw you anything you ask ( or at least Iâ€™ll try ) you can text me at any hour of the day , I pretty much only do that , I have weird family anecdotes and stories I can tell you , but if you are not interested in anything I mentioned it doesnâ€™t matter Iâ€™m just here to be a friend	Guys I want friends Thatâ€™s it , Iâ€™m alone and donâ€™t talk to anyone dm me or anything, Iâ€™m just tired of only talking to my dad and sister, literally only my dad and sister , I like animated series but Iâ€™m flexible to anything the last series I watch was Santa Claritaâ€™s diet and the last animated series I watch was the hollow and shera ( I was watching them at the same time ), and I have a very extended music repertoire I can draw you anything you ask ( or at least Iâ€™ll try ) you can text me at any hour of the day , I pretty much only do that , I have weird family anecdotes and stories I can tell you , but if you are not interested in anything I mentioned it doesnâ€™t matter Iâ€™m just here to be a friend	Guys I want friends Thatas it , Iam alone and don't talk to anyone do me or anything Iam just tired of only talking to my dad and sister literally only my dad and sister , I like animated series but Iam flexible to anything the last series I watch was Santa Claritaas diet and the last animated series I watch was the hollow and sera ( I was watching them at the same time i and I have a very extended music repertoire I can draw you anything you ask ( or at least Iall try ) you can text me at any hour of the day , I pretty much only do that , I have weird family anecdotes and stories I can tell you , but if you are not interested in anything I mentioned it doesn't matter Iam just here to be a friend	Guys I want friends Thatâ€™s it , Iâ€™m alone and donâ€™t talk to anyone dm me or anything, Iâ€™m just tired of only talking to my dad and sister, literally only my dad and sister , I like animated series but Iâ€™m flexible to anything the last series I watch was Santa Claritaâ€™s diet and the last animated series I watch was the hollow and shera ( I was watching them at the same time ), and I have a very extended music repertoire I can draw you anything you ask ( or at least Iâ€™ll try ) you can text me at any hour of the day , I pretty much only do that , I have weird family anecdotes and stories I can tell you , but if you are not interested in anything I mentioned it doesnâ€™t matter Iâ€™m just here to be a friend	[Guys, I, want, friends, Thatas, Iam, alone, donat, talk, anyone, dm, or, anything, Iam, just, tired, only, talking, dad, sister, literally, only, dad, sister, I, like, animated, series, but, Iam, flexible, anything, last, series, I, watch, Santa, Claritaas, diet, last, animated, series, I, watch, hollow, shera, I, watching, them, same, time, I, have, very, extended, music, repertoire, I, can, draw, anything, ask, or, least, Iall, try, can, text, any, hour, day, I, pretty, much, only, I, have, weird, family, anecdotes, stories, I, can, tell, but, not, interested, anything, I, mentioned, doesnat, matter, Iam, just, friend]
-27	suicide	I think today may be my last.Everything's becoming too overwhelming and once it's late enough into the night I think it would be enough to go and finally end this miserable life of mine. I have a plan that works, if a certain friend doesn't call again. But I don't know if I'll be able to actually move.. I don't know what I want anymore but dying fixes everything, like this pain in my chest... And everything else.\n\nDying would fix everything, and I'd stop being such a nuisance and a past to the people I care about.\n\nI can't waste anyone's time if I'm dead.\n\n&amp;#x200B;\n\nI think once the time is right, I'll go.	I think today may be my last.Everything's becoming too overwhelming and once it's late enough into the night I think it would be enough to go and finally end this miserable life of mine. I have a plan that works, if a certain friend doesn't call again. But I don't know if I'll be able to actually move.. I don't know what I want anymore but dying fixes everything, like this pain in my chest... And everything else. Dying would fix everything, and I'd stop being such a nuisance and a past to the people I care about. I can't waste anyone's time if I'm dead. and amp;#x200B; I think once the time is right, I'll go.	I think today may be my last Everything's becoming too overwhelming and once it's late enough into the night I think it would be enough to go and finally end this miserable life of mine I have a plan that works if a certain friend doesn't call again But I don't know if I'll be able to actually move I don't know what I want anymore but dying fixes everything like this pain in my chest And everything else Dying would fix everything and I'd stop being such a nuisance and a past to the people I care about I can't waste anyone's time if I'm dead and amp;#x200B; I think once the time is right I'll go	I think today may be my last.Everything's becoming too overwhelming and once it's late enough into the night I think it would be enough to go and finally end this miserable life of mine. I have a plan that works, if a certain friend doesn't call again. But I don't know if I'll be able to actually move.. I don't know what I want anymore but dying fixes everything, like this pain in my chest... And everything else. Dying would fix everything, and I'd stop being such a nuisance and a past to the people I care about. I can't waste anyone's time if I'm dead. and amp;#x200B; I think once the time is right, I'll go.	[I, think, today, becoming, too, overwhelming, once, late, enough, night, I, think, enough, go, finally, end, miserable, life, I, have, plan, works, certain, friend, call, again, But, I, know, I, able, actually, move, I, know, I, want, anymore, but, dying, fixes, everything, like, pain, chest, And, everything, Dying, fix, everything, I, stop, nuisance, past, people, I, care, I, ca, waste, anyone, time, I, dead, amp, x200B, I, think, once, time, right, I, go]
-Model
+![image](https://user-images.githubusercontent.com/13395314/167274590-5ab922c4-ab4a-47e9-93da-8b5ce527bee6.png)
+![image](https://user-images.githubusercontent.com/13395314/167274610-53f391c9-46e4-4a30-8ca0-05c178211338.png)
+![image](https://user-images.githubusercontent.com/13395314/167274619-c8b32329-369a-4188-ad40-b1abf0910341.png)
+![image](https://user-images.githubusercontent.com/13395314/167274628-d1a57081-1dad-44ed-9cd4-7bfa4003ecde.png)
+![image](https://user-images.githubusercontent.com/13395314/167274644-10c746ca-9ede-4290-90bd-0b17599f8cc1.png)
+
+# Model
 ```python
 !wget --quiet https://raw.githubusercontent.com/tensorflow/models/master/official/nlp/bert/tokenization.py
 device_name = tf.test.gpu_device_name()
@@ -311,13 +294,8 @@ if device_name != '/device:GPU:0':
     raise SystemError('GPU device not found')
 print('Found GPU at: {}'.format(device_name))
 ```
-Found GPU at: /device:GPU:0
-2022-01-16 08:24:45.562953: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2022-01-16 08:24:45.563484: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2022-01-16 08:24:45.563907: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2022-01-16 08:24:45.564428: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2022-01-16 08:24:45.565656: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2022-01-16 08:24:45.566010: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1510] Created device /device:GPU:0 with 15403 MB memory:  -> device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:00:04.0, compute capability: 6.0
+
+![image](https://user-images.githubusercontent.com/13395314/167274674-f2ae9f0c-7296-486a-917e-5bacee5a3f93.png)
 
 ```python
 df = pd.read_csv('https://transfer.sh/azv2wW/All_Data.csv')
@@ -397,37 +375,14 @@ def build_model(bert_layer, max_len=128):
 model = build_model(bert_layer)
 model.summary()
 ```
-Model: "model"
-__________________________________________________________________________________________________
-Layer (type)                    Output Shape         Param #     Connected to                     
-==================================================================================================
-input_word_ids (InputLayer)     [(None, 128)]        0                                            
-__________________________________________________________________________________________________
-input_mask (InputLayer)         [(None, 128)]        0                                            
-__________________________________________________________________________________________________
-segment_ids (InputLayer)        [(None, 128)]        0                                            
-__________________________________________________________________________________________________
-keras_layer (KerasLayer)        [(None, 768), (None, 109482241   input_word_ids[0][0]             
-                                                                 input_mask[0][0]                 
-                                                                 segment_ids[0][0]                
-__________________________________________________________________________________________________
-tf.__operators__.getitem (Slici (None, 768)          0           keras_layer[0][1]                
-__________________________________________________________________________________________________
-dense (Dense)                   (None, 64)           49216       tf.__operators__.getitem[0][0]   
-__________________________________________________________________________________________________
-dropout (Dropout)               (None, 64)           0           dense[0][0]                      
-__________________________________________________________________________________________________
-dense_1 (Dense)                 (None, 32)           2080        dropout[0][0]                    
-__________________________________________________________________________________________________
-dropout_1 (Dropout)             (None, 32)           0           dense_1[0][0]                    
-__________________________________________________________________________________________________
-dense_2 (Dense)                 (None, 1)            33          dropout_1[0][0]                  
-==================================================================================================
-Total params: 109,533,570
-Trainable params: 51,329
-Non-trainable params: 109,482,241
-__________________________________________________________________________________________________
+![image](https://user-images.githubusercontent.com/13395314/167274694-31e33b1e-6cfa-4613-80ca-4f804b797165.png)
+
+```python
 tf.keras.utils.plot_model(model)
+```
+
+![image](https://user-images.githubusercontent.com/13395314/167274804-d1853836-d308-4f8e-8012-abd53be5a717.png)
+
 ```python
 model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     filepath='/best_weights',
@@ -437,35 +392,14 @@ model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     save_best_only=True)
 history = model.fit(X_train, y_train, epochs=10, validation_split=0.1, batch_size=16, callbacks=[model_checkpoint_callback])
 ```
-2022-01-16 08:30:36.329827: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
-Epoch 1/10
-9666/9666 [==============================] - 972s 100ms/step - loss: 0.3915 - accuracy: 0.8304 - val_loss: 0.2694 - val_accuracy: 0.8908
-Epoch 2/10
-9666/9666 [==============================] - 964s 100ms/step - loss: 0.2779 - accuracy: 0.8912 - val_loss: 0.2423 - val_accuracy: 0.9042
-Epoch 3/10
-9666/9666 [==============================] - 964s 100ms/step - loss: 0.2556 - accuracy: 0.9012 - val_loss: 0.2306 - val_accuracy: 0.9093
-Epoch 4/10
-9666/9666 [==============================] - 965s 100ms/step - loss: 0.2440 - accuracy: 0.9065 - val_loss: 0.2238 - val_accuracy: 0.9122
-Epoch 5/10
-9666/9666 [==============================] - 904s 94ms/step - loss: 0.2361 - accuracy: 0.9093 - val_loss: 0.2189 - val_accuracy: 0.9144
-Epoch 6/10
-9666/9666 [==============================] - 959s 99ms/step - loss: 0.2303 - accuracy: 0.9113 - val_loss: 0.2152 - val_accuracy: 0.9160
-Epoch 7/10
-9666/9666 [==============================] - 960s 99ms/step - loss: 0.2255 - accuracy: 0.9134 - val_loss: 0.2117 - val_accuracy: 0.9168
-Epoch 8/10
-9666/9666 [==============================] - 906s 94ms/step - loss: 0.2225 - accuracy: 0.9147 - val_loss: 0.2089 - val_accuracy: 0.9176
-Epoch 9/10
-9666/9666 [==============================] - 903s 93ms/step - loss: 0.2186 - accuracy: 0.9164 - val_loss: 0.2076 - val_accuracy: 0.9171
-Epoch 10/10
-9666/9666 [==============================] - 898s 93ms/step - loss: 0.2160 - accuracy: 0.9177 - val_loss: 0.2043 - val_accuracy: 0.9194
-# X_test = bert_encode(X_test, tokenizer)
-# model.evaluate(X_test, y_test)
+![image](https://user-images.githubusercontent.com/13395314/167274766-fd9b27b9-4c3e-4caf-9d71-fd79290a402c.png)
+
 ```python
 model.save('./my_model')
 ```
-2022-01-16 11:10:46.448564: W tensorflow/python/util/util.cc:348] Sets are not currently considered sequences, but this may change in the future, so consider avoiding using them.
-===================================================
-Future Plans
+![image](https://user-images.githubusercontent.com/13395314/167274795-1adce7c9-3e16-47ad-8e76-57d21383ad20.png)
+
+# Future Plans
 Texts
 ### some issue
 Hashtag may have more importance
